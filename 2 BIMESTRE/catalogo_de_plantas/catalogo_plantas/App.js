@@ -9,11 +9,26 @@ import {
 
 export default function App() {
   const plantas = [
-    { nome: 'Samambaia' },
-    { nome: 'Costela-de-Adão' },
-    { nome: 'Jiboia' },
-    { nome: 'Espada-de-São-Jorge' },
-    { nome: 'Suculenta' },
+    {
+      nome: 'Samambaia',
+      imagem: '',
+    },
+    {
+      nome: 'Costela-de-Adão',
+      imagem: 'COLE_O_LINK_DA_IMAGEM',
+    },
+    {
+      nome: 'Jiboia',
+      imagem: 'COLE_O_LINK_DA_IMAGEM_AQUI',
+    },
+    {
+      nome: 'Espada-de-São-Jorge',
+      imagem: 'COLE_O_LINK_DA_IMAGEM_AQUI',
+    },
+    {
+      nome: 'Suculenta',
+      imagem: 'COLE_O_LINK_DA_IMAGEM_AQUI',
+    },
   ];
 
   return (
@@ -23,9 +38,12 @@ export default function App() {
       <ScrollView contentContainerStyle={styles.lista}>
         {plantas.map((planta, index) => (
           <View key={index} style={styles.card}>
-            {/* Espaço para foto */}
-            <View style={styles.fotoPlaceholder}>
-              <Text style={styles.textoFoto}>Foto da Planta</Text>
+            <View style={styles.fotoContainer}>
+              <Image
+                source={{ uri: planta.imagem }}
+                style={styles.imagem}
+                resizeMode="cover"
+              />
             </View>
 
             <Text style={styles.nome}>{planta.nome}</Text>
@@ -68,22 +86,19 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 
-  fotoPlaceholder: {
+  fotoContainer: {
     width: '100%',
     height: 180,
     backgroundColor: '#C8E6C9',
     borderRadius: 10,
     borderWidth: 2,
     borderColor: '#4CAF50',
-    borderStyle: 'dashed',
-    justifyContent: 'center',
-    alignItems: 'center',
+    overflow: 'hidden',
   },
 
-  textoFoto: {
-    color: '#2E7D32',
-    fontSize: 16,
-    fontWeight: 'bold',
+  imagem: {
+    width: '100%',
+    height: '100%',
   },
 
   nome: {
